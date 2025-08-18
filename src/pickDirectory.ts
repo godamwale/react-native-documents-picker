@@ -69,7 +69,11 @@ export type PickDirectoryResponse<O extends DirectoryPickerOptions> = Promise<
  * */
 export async function pickDirectory<O extends DirectoryPickerOptions>(
   options?: O,
-): PickDirectoryResponse<O> {
+): Promise<
+  O extends DirectoryPickerOptionsLongTerm
+    ? DirectoryPickerResponseLongTerm
+    : DirectoryPickerResponse
+> {
   const optionsOverride = (() => {
     if (Platform.OS === 'ios') {
       return {
@@ -87,7 +91,5 @@ export async function pickDirectory<O extends DirectoryPickerOptions>(
       }
     }
   })()
-  return NativeDocumentPicker.pickDirectory(optionsOverride) as unknown as Promise<
-    PickDirectoryResponse<O>
-  >
+  return NativeDocumentPicker.pickDirectory(optionsOverride) as any
 }

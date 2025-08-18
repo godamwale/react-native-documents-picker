@@ -4,7 +4,12 @@
     "outDir": "./build",
     "jsx": "react",
     "lib": ["es2022"],
-    "declaration": false
+    "declaration": false,
+    "types": ["jest", "node"],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "Node16",
+    "skipLibCheck": true
   },
   "include": ["./setup.ts"],
 }

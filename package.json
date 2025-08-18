@@ -26,7 +26,7 @@
   ],
   "scripts": {
     "build:mock": "tsc --build jest",
-    "prepare": "bob build && yarn build:mock"
+    "prepare": "bob build && npm run build:mock"
   },
   "codegenConfig": {
     "name": "rndocumentpickerCGen",
@@ -60,6 +60,11 @@
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.4",
+    "@types/jest": "^29.5.0",
+    "@types/react": "^18.2.0",
+    "@types/react-native": "^0.72.0",
+    "react": "^18.2.0",
+    "react-native": "^0.72.0",
     "react-native-builder-bob": "^0.36.0",
     "typescript": "^5.7.3"
   },
