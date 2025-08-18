@@ -1,8 +1,8 @@
 buildscript {
     // Buildscript is evaluated before everything else so we can't use getExtOrDefault
     // Fixed: Added fallback compatibility for both kotlin_version and kotlinVersion
-    def kotlin_version = rootProject.ext.has("kotlin_version") ? rootProject.ext.get("kotlin_version") : 
-                        (rootProject.ext.has("kotlinVersion") ? rootProject.ext.get("kotlinVersion") : 
+    def kotlin_version = rootProject.ext.has("kotlin_version") ? rootProject.ext.get("kotlin_version") :
+                        (rootProject.ext.has("kotlinVersion") ? rootProject.ext.get("kotlinVersion") :
                         (project.properties["DocumentPicker_kotlinVersion"] ?: "1.9.22"))
 
     repositories {
@@ -41,6 +41,9 @@ android {
     if (agpVersion.tokenize('.')[0].toInteger() >= 7) {
       namespace "com.reactnativedocumentpicker"
     }
+    buildFeatures {
+        buildConfig = true
+    }
     compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
 
     // Used to override the NDK path/version on internal CI or by allowing
@@ -74,7 +77,7 @@ repositories {
 }
 
 // Fixed: Use string version instead of getExtOrIntegerDefault for kotlin_version
-def kotlin_version = rootProject.ext.has("kotlin_version") ? rootProject.ext.get("kotlin_version") : 
+def kotlin_version = rootProject.ext.has("kotlin_version") ? rootProject.ext.get("kotlin_version") :
                     (rootProject.ext.has("kotlinVersion") ? rootProject.ext.get("kotlinVersion") : "1.9.22")
 
 dependencies {
